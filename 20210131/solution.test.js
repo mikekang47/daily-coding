@@ -1,7 +1,12 @@
 function solution(array) {
 
     const sortedArray = array.sort((a, b) => `${b}${a}`-`${a}${b}`);
-    return sortedArray.join("").toString();
+    const answer = sortedArray.join("").toString();
+    
+    return answer[0] === '0'? '0' :answer;
+    
+
+
     }
     
     test('solution', () => {
