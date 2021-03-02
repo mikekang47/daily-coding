@@ -3,8 +3,8 @@
 //n개짜리 값을 각각 구하는 함수 n개짜리 => 
  
 function combination(cards) {
+  let sum = 1;
     function recursion(n){
-      let sum = 1;
       if (n == 0) {
         return sum;
       }
@@ -12,38 +12,21 @@ function combination(cards) {
         sum *= (cards.length -(n-1));
         return recursion(n-1);
       }
-      
-      //2 = > cards.length * cards.length-1
     }
   
     function n개짜리(n) {
-      if(n == 1) {
-       return recursion(1);
-      }
-      if(n == 2) {
-        return recursion(2);
-      } 
-      if(n == 3) {
-        return recursion(3);
-      }
-      if(n == 100) {
-        return recursion(100);
-      }
-      else {
-        return null;
-      }
+      return recursion(n);
     }
-  
+
+    let sumRe = 0;
     function accumulator(n) {
-      let sum = 0;
       for(let i = 1; i <= n; i++) {
-        sum += n개짜리(i);
+        sumRe += recursion(i);
       }
-  
-      return sum;
+      return sumRe;
     }
   
-    return accumulator(2);
+   return accumulator(cards.length);
   }
   
   test('combination', () => {
