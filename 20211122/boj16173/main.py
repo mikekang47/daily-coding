@@ -1,27 +1,30 @@
+import sys
+
 n = int(input())
-graph = [[0]]
-visited = [[False]]
+graph = []
+visited = [[False] * n for _ in range(n)]
+
 for i in range(n):
     graph.append(list(map(int, input().split())))
-    visited.append([False] * n)
-
+visited[0][0] = True
 
 def dfs(x, y):
-    if x >= n or y >= n:
-        return False
+    num = graph[x][y]
+    if num == -1:
+        print("HaruHaru")
+        sys.exit()
 
-    if visited[x][y]:
-        return False
+    if num + x < n and visited[num+x][y] != True:
+        visited[num+x][y] = True
+        dfs(num+x,y)
 
-    if graph[x][y] == -1:
-        return True
-    else:
-        visited[x][y] = True
-        dfs(x + graph[x][y], y)
-        dfs(x, y + graph[x][y])
+    if y+num < n and visited[x][y+num] != True:
+        visited[x][y+num] = True
+        dfs(x, y+num)
 
 
-if dfs(1, 1):
-    print("HaruHaru")
-else:
-    print("Hing")
+
+dfs(0,0)
+print("Hing")
+
+
