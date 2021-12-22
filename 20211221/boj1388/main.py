@@ -1,34 +1,32 @@
-N, M = map(int, input().split())
-
-brd = [input() for _ in range(N)]
-visited = [[0]*M for _ in range(N)]
+n, m = map(int, input().split())
+visited = [[0] * m for _ in range(n)]
 cnt = 0
+graph = [input() for _ in range(n)]
 
-
-def dfs(i, j):
+def dfs(row, col):
+    visited[row][col] = True
     global cnt
-    visited[i][j] = 1
-    if brd[i][j] == '-':
-        if 0 <= j+1 < M:
-            if brd[i][j+1] == '-':
-                dfs(i, j+1)
+    if graph[row][col] == '-':
+        if 0 <= col+1 < m:
+            if graph[row][col+1] == '-':
+                dfs(row, col+1)
             else:
                 cnt += 1
         else:
             cnt += 1
     else:
-        if 0 <= i+1 < N:
-            if brd[i+1][j] == '|':
-                dfs(i+1, j)
+        if 0 <= row+1 < n:
+            if graph[row+1][col] == '|':
+                dfs(row+1, col)
             else:
                 cnt += 1
         else:
             cnt += 1
 
 
-for i in range(N):
-    for j in range(M):
-        if visited[i][j] == 0:
-            dfs(i, j)
+for i in range(n):
+    for j in range(m):
+        if not visited[i][j]:
+            dfs(i,j)
 
 print(cnt)
