@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-typedef long long ll;
 int n;
 string s;
 char a[101][101];
