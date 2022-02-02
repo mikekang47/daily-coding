@@ -3,7 +3,7 @@ while True:
     if s == "end":
         break
     good = True
-    a = s;
+    a = s
     for x in "aeiou":
         a = a.replace(x, "a")
     for x in "qwrtypsdfghjklzxvbnm":
