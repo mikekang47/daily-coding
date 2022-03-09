@@ -5,6 +5,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
+        if(n<5) {
+            if(n==3)
+                System.out.println(1);
+            else
+                System.out.println(-1);
+            return;
+        }
         int[] dp = new int[n+1];
         Arrays.fill(dp, 9999);
         dp[3] = 1;
