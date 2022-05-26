@@ -1,15 +1,18 @@
+def palindrome(s, left:int, right:int):
+    while left >= 0 and right < len(s):
+        if s[left] != s[right]:break
+        left -= 1
+        right += 1
+    return right - left - 1
+
+
 def solution(s):
     answer = 0
-    if s == ''.join(reversed(s)):
-        return len(s)
-    mx = 1
-    for i in range(1, len(s)):
-        for j in range(len(s)):
-            if list(s[j:j+i]) == list(reversed(s[j:j+i])) and len(s[j:j+i]) > mx:
-                mx = len(s[j:j+i])
-    answer = mx
+    for i in range(len(s)):
+        odd = palindrome(s, i, i)
+        even = palindrome(s, i-1, i)
+        maxV = max(odd, even)
+        answer = max(answer, maxV)
     return answer
-
-
-s = "abacde"
+s = "eabacde"
 print(solution(s))
