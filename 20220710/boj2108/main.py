@@ -1,12 +1,14 @@
 import statistics
+import sys
 
-n = int(input())
-li = [int(input()) for _ in range(n)]
+n = int(sys.stdin.readline())
+li = [int(sys.stdin.readline()) for _ in range(n)]
 li.sort()
+
 print(round(statistics.mean(li)))
 print(int(statistics.median(li)))
-if len(statistics.multimode(li)) >= 2:
+if len(statistics.multimode(li)) > 1:
     print(statistics.multimode(li)[1])
 else:
-    print(print(statistics.multimode(li)[0]))
+    print(statistics.multimode(li)[0])
 print(li[-1] - li[0])
