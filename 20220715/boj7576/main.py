@@ -1,8 +1,8 @@
 import sys
-
-m, n = map(int, input().split())
-q = []
-graph = [list(map(int, input().split())) for _ in range(n)]
+from collections import deque
+m, n = map(int, sys.stdin.readline().split())
+q = deque()
+graph = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 result = 0
 dx = [1, 0, -1, 0]
 dy = [0, 1, 0, -1]
@@ -13,10 +13,10 @@ for i in range(n):
         if graph[i][j] == 1:
             q.append([i, j])
 
-while not len(q) == 0:
+while len(q) != 0:
     y = q[0][0]
     x = q[0][1]
-    q.pop(0)
+    q.popleft()
     for i in range(4):
         nx = dx[i] + x
         ny = dy[i] + y
