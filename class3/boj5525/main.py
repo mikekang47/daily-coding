@@ -4,8 +4,9 @@ m = input()
 
 cnt = 0
 result = 0
-for i in range(1, s - 1):
-    if m[i - 1] == 'I' and m[i] == 'O' and m[i + 1] == 'I':
+i = 0
+while i < s:
+    if m[i:i + 3] == 'IOI':
         cnt += 1
         if cnt == n:
             cnt -= 1
@@ -13,4 +14,5 @@ for i in range(1, s - 1):
         i += 1
     else:
         cnt = 0
+    i += 1
 print(result)
