@@ -1,21 +1,31 @@
 from collections import defaultdict
+import sys
+dic = {
+    1 : "1.,?!",
+    2 : "2ABC",
+    3 : "3DEF",
+    4 : "4GHI",
+    5 : "5JKL",
+    6 : "6MNO",
+    7 : "7PQRS",
+    8 : "8TUV",
+    9 : "9WXYZ",
+}
 
-dic = {1: [1, '.', ',', '?', '!'], 2: [2, 'A', 'B', 'C'], 3: [3, 'D', 'E', 'F'],
-       4: [4, 'G', 'H', 'I'], 5: [5, 'J', 'K', 'L'], 6: [6, 'M', 'N', 'O'],
-       7: ['P', 'Q', 'R', 'S'], 8: [8, 'T', 'U', 'V'], 9: [9, 'W', 'X', 'Y', 'Z']
-       }
-n = int(input())
-s = list(input())
-cnt = 1
-start = s[0]
+n = int(sys.stdin.readline())
+s = sys.stdin.readline()
+
+cnt = 0
 result = ""
-for i in range(1, len(s)):
-    if start == s[i]:
-        cnt += 1
+for i in range(n):
+    if i == n:
+        break
     else:
-        result += str(dic[int(start)][cnt % len(dic[int(start)])-1]) if cnt % len(dic[int(start)]) != 0 else dic[int(start)][-1]
-        cnt = 1
-        start = s[i]
-
-result += str(dic[int(start)][cnt % len(dic[int(start)])-1]) if cnt % len(dic[int(start)]) != 0 else dic[int(start)][-1]
+        if s[i+1] == s[i]:
+            cnt += 1
+            continue
+        else:
+            cnt %= len(dic[int(s[i])])
+            result += dic[int(s[i])][cnt]
+            cnt = 0
 print(result)
