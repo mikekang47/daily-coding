@@ -3,30 +3,32 @@ from collections import deque
 
 t = int(sys.stdin.readline())
 for _ in range(t):
-    a, b = map(int, sys.stdin.readline().rstrip().split())
-    visited = ["" for _ in range(10001)]
-    q = [a]
-    s = ""
+    a, b = map(int, sys.stdin.readline().split())
+    visited = [False for _ in range(10001)]
+    q = deque()
+    q.append((a, ""))
     while len(q) != 0:
-        v = q.pop(0)
-
-        if visited[(v * 2) % 10000] == "":
-            q.append((v * 2) % 10000)
-            visited[int((v * 2) % 10000)] = visited[v] + "D"
-        if visited[v - 1 if v - 1 != 0 else 9999] == "":
-            q.append(v - 1 if v - 1 != 0 else 9999)
-            visited[v - 1 if v - 1 != 0 else 9999] = visited[v] + "S"
-
-        l = deque(str(v))
-        l.rotate(-1)
-
-        if visited[int(''.join(list(l)))] == "":
-            q.append(int(''.join(list(l))))
-            visited[int(''.join(list(l)))] = visited[v] + "L"
-        l.rotate(2)
-        if visited[int(''.join(list(l)))] == "":
-            q.append(int(''.join(list(l))))
-            visited[int(''.join(list(l)))] = visited[v] + "R"
+        v, s = q.popleft()
         if v == b:
+            print(s)
             break
-    print(visited[b])
+
+        temp = (v * 2) % 10000
+        if not visited[temp]:
+            q.append((temp, s + "D"))
+            visited[temp] = True
+
+        temp = v - 1 if v != 0 else 9999
+        if not visited[temp]:
+            q.append((temp, s + "S"))
+            visited[temp] = True
+
+        temp = (v % 1000) * 10 + (v // 1000)
+        if not visited[temp]:
+            q.append((temp, s + "L"))
+            visited[temp] = True
+
+        temp = (v % 10) * 1000 + (v // 10)
+        if not visited[temp]:
+            q.append((temp, s + "R"))
+            visited[temp] = True
