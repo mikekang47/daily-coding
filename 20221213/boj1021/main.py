@@ -20,6 +20,7 @@ for i in li:
             rightArray.rotate(1)
             right += 1
         cnt += min(right, left)
-        d = leftArray
 
+        d = leftArray
+        d.popleft()
 print(cnt)
