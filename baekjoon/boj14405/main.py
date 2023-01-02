@@ -1,9 +1,9 @@
-li = ["pi","ka","chu"]
-n = input()
-for i in li:
-    n = n.replace(i, "")
+import re
 
-if len(n) == 0:
+regex = re.compile('(pi|ka|chu)*')
+n = input()
+
+if re.fullmatch(regex, n):
     print("YES")
 else:
     print("NO")
