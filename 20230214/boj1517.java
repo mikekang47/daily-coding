@@ -2,7 +2,7 @@
 import java.util.*;
 import java.io.*;
 
-public class boj1617 {
+public class boj1517 {
     public static int[] A, temp;
     public static long result = 0;
     public static void main(String[] args) throws IOException{
