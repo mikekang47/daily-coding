@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 N, M = map(int, input().split())
 
 parent = [i for i in range(N + 1)]
